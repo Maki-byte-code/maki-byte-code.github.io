@@ -7,30 +7,34 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
         }
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
-            background: #ffffff00;
+            background: #fff;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(71, 71, 71, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: center
+            text-align: center; /* Align content to center */
         }
         h1 {
-            text-align: center;
             color: #333;
         }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
         .tab {
-            background-color: #a2faf6;
+            background-color: #ddd;
             cursor: pointer;
             padding: 10px;
             border-radius: 5px;
-            margin-bottom: 10px;
-            display: inline-block
+            margin: 0 5px 10px 5px;
+            display: inline-block; /* Display as inline block */
         }
         .code-container {
             display: none;
@@ -39,7 +43,7 @@
             padding: 20px;
             border-radius: 5px;
             overflow-x: auto;
-            text-align: left
+            text-align: left; /* Align code to left */
         }
         code {
             font-family: "Courier New", Courier, monospace;
@@ -50,193 +54,51 @@
 
 <div class="container">
     <h1>Batch Script Code</h1>
-    <div class="tab" onclick="toggleCode()">Show Batch Script</div>
-        <div class="tab" onclick="toggleCode()">Script 1</div>
-        <div class="tab" onclick="toggleCode()">Script 2</div>
-        <div class="tab" onclick="toggleCode()">Script 3</div>
-        <div class="tab" onclick="toggleCode()">Script 4</div>
-        <div class="tab" onclick="toggleCode()">Script 5</div>  
-        </div>
-        <div class="code-container" id="code1">
-            <code>
-            This is script 1.
-            </code>
-        </div>
-        <div class="code-container" id="code2">
-            <code>
-            This is script 2.
-            </code>
-        </div>
-        <div class="code-container" id="code3">
-            <code>
-            This is script 3.
-            </code>
-        </div>
-        <div class="code-container" id="code4">
-            <code>
-            This is script 4.
-            </code>
-        </div>
-        <div class="code-container" id="code5">
-            <code>
-            This is script 5.
-            </code>
-        </div>
-    
-        <div class="code-container" id="code">
-        
+    <div class="tab-container">
+        <div class="tab" onclick="toggleCode(1)">Script 1</div>
+        <div class="tab" onclick="toggleCode(2)">Script 2</div>
+        <div class="tab" onclick="toggleCode(3)">Script 3</div>
+        <div class="tab" onclick="toggleCode(4)">Script 4</div>
+        <div class="tab" onclick="toggleCode(5)">Script 5</div>
+    </div>
+    <div class="code-container" id="code1">
         <code>
-            <pre>
-@echo off
-setlocal EnableDelayedExpansion
-
-:CalculateDistance
-
-set /p "country1=Enter the first country: "
-set "file=coordinates.txt"
-set "file1=encouragement.txt"
-
-set "total_lines=40"
-set /a "random_line=!random! %% total_lines + 1"
-
-set "selected_line="
-for /f "skip=%random_line% tokens=1" %%a in ('type "%file%"') do if not defined selected_line (
-    set "selected_line=%%a"
-    set  "country2=%%a"
-)
-
-set "lat1="
-set "lat2="
-set "lon1="
-set "lon2="
-
-for /f "tokens=1,2,3" %%a in (coordinates.txt) do (
-    if /i "%%a"=="%country1%" (
-        set "lat1=%%b"
-        set "lon1=%%c"
-    )
-    if /i "%%a"=="%country2%" (
-        set "lat2=%%b"
-        set "lon2=%%c"
-    )
-    if defined lat1 if defined lat2 if defined lon1 if defined lon2 goto :FoundCoordinates
-)
-
-echo Coordinates not found for %country1% or %country2%
-pause
-exit /b
-
-:FoundCoordinates
-
-set /a "dLat=(lat2-lat1)*1000000"
-set /a "dLon=(lon2-lon1)*1000000"
-set /a "dLat2=(lat2-lat1)*111"
-set /a "dLon2=(lon2-lon1)*76"
-
-if !dLat! LSS 0 (
-    set lat_direction=South
-) else (
-    set lat_direction=North
-)
-if !dLon! LSS 0 (
-    set lon_direction=West
-) else (
-    set lon_direction=East
-)
-
-set /a "a=(dLat * dLat + dLon * dLon)"
-set /a "distance=(a * 6371 + 500000) / 1000000" 2>nul
-
-if %distance% EQU 0 (
-    echo You won!  %country2% is the mystery country.
-) else (
-    
-    echo Latitude direction: %lat_direction% of %country1%   
-    echo Mystery country is %lon_direction% of %country1%  
-)
-
-set /a "counter=8"
-set "max_count=0"
-
-:GuessLoop
-set /a "counter-=1"
-if !counter! LSS %max_count% (
-    goto :Lose
-)
-
-set /p "country3=Enter your next guess: "
-
-set "lat3="
-set "lon3="
-
-for /f "tokens=1,2,3" %%a in (coordinates.txt) do (
-    if /i "%%a"=="%country3%" (
-        set "lat3=%%b"
-        set "lon3=%%c"
-    )
-)
-
-if not defined lat3 if not defined lon3 (
-    echo Coordinates not found for %country3%
-    goto :GuessLoop
-)
-
-set /a "dLat1=(lat3-lat2)*76"
-set /a "dLon1=(lon3-lon2)*111"
-if !dLat1! LSS 0 (
-    set lat_direction1=South
-) else (
-    set lat_direction1=North
-)
-if !dLon1! LSS 0 (
-    set lon_direction1=West
-) else (
-    set lon_direction1=East
-)
-
-set /a "c=(dLat1*dLat1)"
-set /a "d=(dLon1*dLon1)"
-set /a "b=(c + d)"
-
-rem Square root calculation alternative
-set "sqrt_b="
-for /f "tokens=1,2 delims=." %%A in ('powershell "[Math]::Sqrt(%b%)"') do set "sqrt_b=%%A"
-
-set /a "distance=(sqrt_b)"
-
-if %distance% EQU 0 (
-    echo You won!  %country3% is the mystery country .
-    pause
-    exit /b
-) else (
-    echo you are %distance% km away.
-    if %counter% LSS 1 (
-        goto :Lose
-    ) else (
-        echo you can do it. %counter% more guesses left
-    )
-    goto :GuessLoop
-
-)
-
-:Lose
-echo You lost the mystery country was %country2%
-pause
-echo Better luck next time</code></pre>
-<code1>hello world1</code1>
-<code2>hello world2</code2>
-<code3>hello world3</code3>
-<code4>hello world4</code4>
-<code5>hello world5</code5>
+        This is script 1.
+        </code>
+    </div>
+    <div class="code-container" id="code2">
+        <code>
+        This is script 2.
+        </code>
+    </div>
+    <div class="code-container" id="code3">
+        <code>
+        This is script 3.
+        </code>
+    </div>
+    <div class="code-container" id="code4">
+        <code>
+        This is script 4.
+        </code>
+    </div>
+    <div class="code-container" id="code5">
+        <code>
+        This is script 5.
+        </code>
+    </div>
 </div>
-</div>
+
 <script>
-    function toggleCode() {
-        var codeContainer = document.getElementById("code");
-        if (codeContainer.style.display === "none") {
-            codeContainer.style.display = "block";
+    function toggleCode(id) {
+        var codeContainers = document.querySelectorAll('.code-container');
+        codeContainers.forEach(function(container) {
+            container.style.display = 'none';
+        });
+        var codeContainer = document.getElementById('code' + id);
+        if (codeContainer.style.display === 'none') {
+            codeContainer.style.display = 'block';
         } else {
-            codeContainer.style.display = "none";
+            codeContainer.style.display = 'none';
         }
     }
 </script>
