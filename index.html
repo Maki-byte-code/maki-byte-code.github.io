@@ -50,14 +50,27 @@
             justify-content: center;
             align-items: center;
         }
-        .image-container{
-            flex: 7;
+        .image-container {
+            flex: 7; /* Give image 70% of the container */
             margin: 10px;
         }
         .text-container {
-            flex: 3;
-            margin:10px;
-            text-align:center;
+            flex: 3; /* Give text 30% of the container */
+            margin: 10px;
+            position: relative; /* Make text container position relative */
+        }
+        .text-container::before {
+            content: "";
+            background: url('code falling.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.3; /* Low opacity for the background image */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1; /* Place background behind text */
+            border-radius: 5px; /* Ensure border-radius matches text container */
         }
         .image-container img {
             width: 100%;
