@@ -29,6 +29,7 @@
             padding: 20px;
             border-radius: 5px;
             overflow-x: auto;
+            white-space: pre; 
         }
         code {
             font-family: "Courier New", Courier, monospace;
@@ -52,7 +53,8 @@ set "total_lines=40"
 set /a "random_line=!random! %% total_lines + 1"
 
 set "selected_line="
-for /f "skip=%random_line% tokens=1" %%a in ('type "%file%"') do if not defined selected_line (
+for /f "skip=%random_line% tokens=1" %%a in ('type "%file%"') do if not defined 
+selected_line (
     set "selected_line=%%a"
     set  "country2=%%a"
 )
