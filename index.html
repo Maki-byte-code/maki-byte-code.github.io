@@ -51,7 +51,7 @@
             align-items: center;
         }
         .image-container {
-            flex: 7;  
+            flex: 7; /* Give image 70% of the container */
             margin: 10px;
         }
         .text-container {
@@ -59,18 +59,18 @@
             margin: 10px;
             position: relative; /* Make text container position relative */
         }
-        .text-container::before {
+        .text-container::after {
             content: "";
-            background: url('code falling.jpg') no-repeat center center;
+            background: url('code falling.jpg') no-repeat right center;
             background-size: cover;
             opacity: 0.3; /* Low opacity for the background image */
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
+            width: 30%; /* Set the width to cover only the right 30% */
             bottom: 0;
             z-index: -1; /* Place background behind text */
-            border-radius: 5px; /* Ensure border-radius matches text container */
+            border-radius: 0 5px 5px 0; /* Ensure border-radius matches text container */
         }
         .image-container img {
             width: 100%;
@@ -137,14 +137,6 @@
         codeContainers.forEach(function(container) {
             container.style.display = 'none';
         });
-        var codeContainer = document.getElementById('code' + id);
-        if (codeContainer.style.display === 'none') {
-            codeContainer.style.display = 'block';
-        } else {
-            codeContainer.style.display = 'none';
-        }
-    }
-</script>
+        var codeContainer = document.getElementById('code')
 
-</body>
-</html>
+    }
