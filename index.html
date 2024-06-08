@@ -45,8 +45,25 @@
             overflow-x: auto;
             text-align: left; /* Align code to left */
         }
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container, .text-container {
+            flex: 1;
+            margin: 10px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
         code {
             font-family: "Courier New", Courier, monospace;
+        }
+        h2 {
+            color: #00ffd5b4;
+            text-align: center;
         }
     </style>
 </head>
@@ -62,32 +79,17 @@
         <div class="tab" onclick="toggleCode(5)">Script 5</div>
     </div>
     <div class="code-container" id="code1">
-        <code>
-        <h2>about
-            <style>
-                h2{
-                    color:#00ffd5b4;
-                    text-align:center;
-
-                    
-                }
-            </style>
-        </h2>
-        <style>
-            .container2{
-                max-width: 1200px;
-            margin: 50 auto;
-            background: #c00b0b;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: right;
-
-            }
-        </style>
-        
-        <p> <img src="programmer.jpg"  style="width:60%; height:100%;"></p>
-        </code>
+        <div class="content-container">
+            <div class="image-container">
+                <img src="programmer.jpg" alt="Description of the image">
+            </div>
+            <div class="text-container">
+                <code>
+                    <h2>About</h2>
+                    <p>This is additional content to the right of the image. You can put any information here that you want to display alongside the image.</p>
+                </code>
+            </div>
+        </div>
     </div>
     <div class="code-container" id="code2">
         <code>
