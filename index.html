@@ -13,7 +13,7 @@
             position: relative; /* Add relative positioning to body */
         }
         .container {
-            max-width: 1200px;
+            max-width: 2500px;
             margin: 0 auto;
             background: #fff;
             padding: 20px;
@@ -37,17 +37,17 @@
         }
         .content-container {
             display: flex;
-            justify-content: space-between; /* Align items to the start and end of the container */
+            justify-content: center;
             align-items: center;
             position: relative;
             z-index: 2; /* Ensure the content container is above the background rectangle */
         }
         .image-container {
-            flex: 1; /* Give image container 1/3 of the width */
+            flex: 7; /* Give image 70% of the container */
             margin: 10px;
         }
         .text-container {
-            flex: 2; /* Give text container 2/3 of the width */
+            flex: 3; /* Give text 30% of the container */
             margin: 10px;
             position: relative; /* Make text container position relative */
         }
@@ -78,36 +78,192 @@
         <h1>MAKI's site</h1>
         <div class="content-container">
             <div class="image-container">
-                <!-- Place your images here -->
-                <img src="photos/batch-icon.jpg" alt="Batch Project" class="thumbnail">
-                <img src="photos/programmer.jpg" alt="Script 3" class="thumbnail">
-                <img src="photos/social-media.jpg" alt="Script 4" class="thumbnail">
-                <img src="photos/th-1157210002.jpg" alt="Script 5" class="thumbnail">
+                <img src="programmer.jpg" alt="Description of the image">
             </div>
             <div class="text-container">
-                <!-- Add your text content here -->
-                <div class="code-container" id="code2">
-                    <code>
-                        <p>Code for the batch project goes here...</p>
-                    </code>
-                </div>
-                <div class="code-container" id="code3">
-                    <code>
-                        <p>This is script 3.</p>
-                    </code>
-                </div>
-                <div class="code-container" id="code4">
-                    <code>
-                        <p>This is script 4.</p>
-                    </code>
-                </div>
-                <div class="code-container" id="code5">
-                    <code>
-                        <p>This is script 5.</p>
-                    </code>
-                </div>
+                <a href="#" onclick="toggleCode(1)">
+                    <img src="about.jpg" alt="About" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(2)">
+                    <img src="batch_project.jpg" alt="Batch Project" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(3)">
+                    <img src="script3.jpg" alt="Script 3" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(4)">
+                    <img src="script4.jpg" alt="Script 4" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(5)">
+                    <img src="script5.jpg" alt="Script 5" class="thumbnail">
+                </a>
             </div>
         </div>
+        <div class="code-container" id="code1">
+            <code>
+                <h2>About</h2>
+                <p>This is the about section.</p>
+            </code>
+        </div>
+        <div class="code-container" id="code2">
+            <code>
+                <p><pre>@echo off
+setlocal EnableDelayedExpansion
+
+:CalculateDistance
+
+set /p "country1=Enter the first country: "
+set "file=coordinates.txt"
+set "file1=encouragement.txt"
+
+set "total_lines=40"
+set /a "random_line=!random! %% total_lines + 1"
+
+set "selected_line="
+for /f "skip=%random_line% tokens=1" %%a in ('type "%file%"') do if not defined selected_line (
+    set "selected_line=%%a"
+    set  "country2=%%a"
+)
+
+set "lat1="
+set "lat2="
+set "lon1="
+set "lon2="
+
+for /f "tokens=1,2,3" %%a in (coordinates.txt) do (
+    if /i "%%a"=="%country1%" (
+        set "lat1=%%b"
+        set "lon1=%%c"
+    )
+    if /i "%%a"=="%country2%" (
+        set "lat2=%%b"
+        set "lon2=%%c"
+    )
+    if defined lat1 if defined lat2 if defined lon1 if defined lon2 goto :FoundCoordinates
+)
+
+echo Coordinates not found for %country1% or %country2%
+pause
+exit /b
+
+:FoundCoordinates
+
+set /a "dLat=(lat2-lat1)*1000000"
+set /a "dLon=(lon2-lon1)*1000000"
+set /a "dLat2=(lat2-lat1)*111"
+set /a "dLon2=(lon2-lon1)*76"
+
+if !dLat! LSS 0 (
+    set lat_direction=South
+) else (
+    set lat_direction=North
+)
+if !dLon! LSS 0 (
+    set lon_direction=West
+) else (
+    set lon_direction=East
+)
+
+set /a "a=(dLat * dLat + dLon * dLon)"
+set /a "distance=(a * 6371 + 500000) / 1000000" 2>nul
+
+if %distance% EQU 0 (
+    echo You won!  %country2% is the mystery country.
+) else (
+    
+    echo Latitude direction: %lat_direction% of %country1%   
+    echo Mystery country is %lon_direction% of %country1%  
+)
+
+set /a "counter=8"
+set "max_count=0"
+
+:GuessLoop
+set /a "counter-=1"
+if !counter! LSS %max_count% (
+    goto :Lose
+)
+
+set /p "country3=Enter your next guess: "
+
+set "lat3="
+set "lon3="
+
+for /f "tokens=1,2,3" %%a in (coordinates.txt) do (
+    if /i "%%a"=="%country3%" (
+        set "lat3=%%b"
+        set "lon3=%%c"
+    )
+)
+
+if not defined lat3 if not defined lon3 (
+    echo Coordinates not found for %country3%
+    goto :GuessLoop
+)
+
+set /a "dLat1=(lat3-lat2)*76"
+set /a "dLon1=(lon3-lon2)*111"
+if !dLat1! LSS 0 (
+    set lat_direction1=South
+) else (
+    set lat_direction1=North
+)
+if !dLon1! LSS 0 (
+    set lon_direction1=West
+) else (
+    set lon_direction1=East
+)
+
+set /a "c=(dLat1*dLat1)"
+set /a "d=(dLon1*dLon1)"
+set /a "b=(c + d)"
+
+rem Square root calculation alternative
+set "sqrt_b="
+for /f "tokens=1,2 delims=." %%A in ('powershell "[Math]::Sqrt(%b%)"') do set "sqrt_b=%%A"
+
+
+set /a "distance=(sqrt_b)"
+
+if %distance% EQU 0 (
+    echo You won!  %country3% is the mystery country .
+    pause
+    exit /b
+) else (
+    echo you are %distance% km away.
+    if %counter% LSS 1 (
+        goto :Lose
+    ) else (
+        echo you can do it. %counter% more guesses left
+    )
+    goto :GuessLoop
+)
+
+:Lose
+echo You lost the mystery country was %country2%
+pause
+echo Better luck next time
+</pre></p>
+            </code>
+        </div>
+        <div class="code-container" id="code3">
+            <code>
+                <p>This is script 3.</p>
+            </code>
+        </div>
+        <div class="code-container" id="code4">
+            <code>
+                <p>This is script 4.</p>
+            </code>
+        </div>
+        <div class="code-container" id="code5">
+            <code>
+                <p>This is script 5.</p>
+            </code>
+        </div>
     </div>
-</body>
-</html>
+
+    <script>
+        function toggleCode(id) {
+            var codeContainers = document.querySelectorAll('.code-container');
+            codeContainers.forEach(function(container) {
+                container.style.display = 'none
