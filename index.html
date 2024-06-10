@@ -5,83 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batch Script Code</title>
     <style>
-       body {
-            font-family: Arial, sans-serif; /* Set font family */
-            background-color: #f4f4f9; /* Set background color */
-            margin: 0; /* Remove default margin */
-            padding: 20px; /* Add padding */
-            position: relative; /* Add relative positioning to body */
-        }
-        .container {
-            max-width: 1200px; /* Set maximum width */
-            margin: 0 auto; /* Center align container */
-            background: #fff; /* Set background color */
-            padding: 20px; /* Add padding */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
-            border-radius: 8px; /* Add border radius */
-            text-align: center; /* Align content to center */
-            position: relative; /* Add relative positioning to container */
-            z-index: 2; /* Ensure the container is above the background rectangle */
-            display: flex; /* Use flexbox */
-            justify-content: center; /* Center align items horizontally */
-        }
-        h1 {
-            color: #333; /* Set text color */
-        }
-        .content-container {
-            display: flex; /* Use flexbox */
-        }
-        .image-container {
-            width: 70%; /* Set width */
-            margin: 10px; /* Add margin */
-            display: flex; /* Use flexbox */
-            flex-direction: row; /* Set flex direction to row */
-            justify-content: center; /* Center align items horizontally */
-            align-items: center; /* Center align items vertically */
-        }
-        .text-container {
-            position: fixed; /* Set fixed positioning */
-            top: 0; /* Align to the top */
-            right: 0; /* Align to the right */
-            width: 30%; /* Set width */
-            height: 100%; /* Set height */
-            background-color: rgba(179, 0, 202, 0.5); /* Set background color */
-            overflow-y: auto; /* Enable vertical overflow */
-        }
-        .code-container {
-            background: #272822; /* Set background color */
-            color: #f8f8f2; /* Set text color */
-            padding: 20px; /* Add padding */
-            border-radius: 5px; /* Add border radius */
-            overflow-x: auto; /* Enable horizontal overflow */
-            text-align: left; /* Align text to left */
-        }
-        .thumbnail {
-            width: auto; /* Set width to auto */
-            height: 100px; /* Set height */
-            cursor: pointer; /* Set cursor to pointer */
-            border-radius: 5px; /* Add border radius */
-            margin: 5px; /* Add margin */
-            transition: transform 0.3s; /* Add transition effect */
-        }
-        .thumbnail:hover {
-            transform: scale(1.05); /* Add hover effect */
-        }
+     body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    position: relative; /* Add relative positioning to body */
+}
+
+.container {
+    max-width: 2500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center; /* Align content to center */
+    position: relative; /* Add relative positioning to container */
+    z-index: 2; /* Ensure the container is above the background rectangle */
+    display: flex; /* Set container to flex */
+    flex-direction: column; /* Arrange children in a column */
+}
+
+h1 {
+    color: #333;
+}
+
+.code-container {
+    display: none;
+    background: #272822;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+    text-align: left; /* Align code to left */
+}
+
+.content-container {
+    flex: 1; /* Make content container take all available height */
+    display: flex; /* Set content container to flex */
+}
+
+.image-container {
+    width: 70%; /* Set width to 70% */
+    margin: 10px;
+    display: flex; /* Set image container to flex */
+    flex-direction: row; /* Arrange images horizontally */
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
+}
+
+.text-container {
+    width: 30%; /* Set width to 30% */
+    margin: 10px;
+    position: relative; /* Make text container position relative */
+}
+
+.background-rectangle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
+    z-index: 1; /* Ensure the background rectangle is behind other content */
+}
+
+.thumbnail {
+    width: auto; /* Remove width restriction */
+    height: 100px; /* Set fixed height */
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px; /* Adjust margin for spacing */
+    transition: transform 0.3s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+
+        
     </style>
 </head>
 <body>
-    <div class="background-rectangle"></div> <!-- Background rectangle -->
-    <div class="container"> <!-- Main container -->
-        <h1>MAKI's site</h1> <!-- Main heading -->
-        <div class="content-container"> <!-- Content container -->
-            <div class="image-container"> <!-- Image container -->
-                <!-- Image links here -->
-            </div>
-            <div class="text-container"> <!-- Text container -->
-                <!-- Text content here -->
+    <div class="background-rectangle"></div>
+    <div class="container">
+        <h1>MAKI's site</h1>
+        <div class="content-container">
+            
+                
+            
+            <div class="text-container">
+                <a href="#" onclick="toggleCode(1)">
+                    <img src="programmer.jpg" alt="About" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(2)">
+                    <img src="batch-icon.jpg" alt="Batch Project" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(3)">
+                    <img src="social-media.jpg" alt="Script 3" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(4)">
+                    <img src="th-1157210002.jpg" alt="Script 4" class="thumbnail">
+                </a>
+                <a href="#" onclick="toggleCode(5)">
+                    <img src="script5.jpg" alt="Script 5" class="thumbnail">
+                </a>
             </div>
         </div>
+        <div class="code-container" id="code1">
+            <code>
+                <h2>About</h2>
+                <p>This is the about section.</p>
+            </code>
+        </div>
+        <div class="code-container" id="code2">
+            <code>
+                <p><pre>@echo off
+
+</pre></p>
+            </code>
+        </div>
+        <div class="code-container" id="code3">
+            <code>
+                <p>This is script 3.</p>
+            </code>
+        </div>
+        <div class="code-container" id="code4">
+            <code>
+                <p>This is script 4.</p>
+            </code>
+        </div>
+        <div class="code-container" id="code5">
+            <code>
+                <p>This is script 5.</p>
+            </code>
+        </div>
     </div>
-    <!-- JavaScript script here -->
-</body>
-</html>
+
+    <script>
+        function toggleCode(id) {
+    var codeContainers = document.querySelectorAll('.code-container');
+    codeContainers.forEach(function(container) {
+        container.style.display = 'none';
+    });
+    var codeContainer = document.getElementById('code' + id);
+    if (codeContainer.style.display === 'none') {
+        codeContainer.style.display = 'block';
+    } else {
+        codeContainer.style.display = 'none';
+    }
+}
+</script>
