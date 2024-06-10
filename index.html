@@ -5,71 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batch Script Code</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-            position: relative; /* Add relative positioning to body */
-        }
-        .container {
-            max-width: 2500px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: center; /* Align content to center */
-            position: relative; /* Add relative positioning to container */
-            z-index: 2; /* Ensure the container is above the background rectangle */
-        }
-        h1 {
-            color: #333;
-        }
-        .code-container {
-            display: none;
-            background: #272822;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 5px;
-            overflow-x: auto;
-            text-align: left; /* Align code to left */
-        }
-        .content-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 2; /* Ensure the content container is above the background rectangle */
-        }
-        .image-container {
-            flex: 8; /* Give image 70% of the container */
-            margin: 10px;
-        }
-        .text-container {
-            flex: 2; /* Give text 30% of the container */
-            margin: 10px;
-            position: relative; /* Make text container position relative */
-        }
-        .background-rectangle {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 30%;
-            height: 100%;
-            background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
-            z-index: 1; /* Ensure the background rectangle is behind other content */
-        }
-        .thumbnail {
-            width: 100%;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: transform 0.3s;
-        }
-        .thumbnail:hover {
-            transform: scale(1.05);
-        }
+        /* Your CSS styles here */
     </style>
 </head>
 <body>
@@ -78,67 +14,57 @@
         <h1>MAKI's site</h1>
         <div class="content-container">
             <div class="image-container">
-                
+                <!-- Place your images here -->
+                <a href="#code2"><img src="photos/batch-icon.jpg" alt="Batch Project" class="thumbnail"></a>
+                <a href="#code3"><img src="photos/programme.jpg" alt="Script 3" class="thumbnail"></a>
+                <a href="#code4"><img src="photos/programme.jpg" alt="Script 4" class="thumbnail"></a>
+                <a href="#code5"><img src="photos/th-1157210002.jpg" alt="Script 5" class="thumbnail"></a>
             </div>
             <div class="text-container">
-                <a href="#" onclick="toggleCode(1)">
-                    <img src="photos/programmer.jpg" alt="About" class="thumbnail">
-                </a>
-                <a href="#" onclick="toggleCode(2)">
-                    <img src="photos/batch-icon.jpg" alt="Batch Project" class="thumbnail">
-                </a>
-                <a href="#" onclick="toggleCode(3)">
-                    <img src="social-media.jpg" alt="Script 3" class="thumbnail">
-                </a>
-                <a href="#" onclick="toggleCode(4)">
-                    <img src="photos/programme.jpg" alt="Script 4" class="thumbnail">
-                </a>
-                <a href="#" onclick="toggleCode(5)">
-                    <img src="photos/th-1157210002.jpg" alt="Script 5" class="thumbnail">
-                </a>
+                <!-- Add your text content here -->
+                <div class="code-container" id="code2">
+                    <code>
+                        <p>Code for the batch project goes here...</p>
+                        <p>This is additional text for the second code section.</p>
+                    </code>
+                </div>
+                <div class="code-container" id="code3">
+                    <code>
+                        <p>This is script 3.</p>
+                        <p>This is additional text for the third code section.</p>
+                    </code>
+                </div>
+                <div class="code-container" id="code4">
+                    <code>
+                        <p>This is script 4.</p>
+                        <p>This is additional text for the fourth code section.</p>
+                    </code>
+                </div>
+                <div class="code-container" id="code5">
+                    <code>
+                        <p>This is script 5.</p>
+                        <p>This is additional text for the fifth code section.</p>
+                    </code>
+                </div>
             </div>
-        </div>
-        <div class="code-container" id="code1">
-            <code>
-                <h2>About</h2>
-                <p>This is the about section.</p>
-            </code>
-        </div>
-        <div class="code-container" id="code2">
-            <code>
-                <p>Code for the batch project goes here...</p>
-            </code>
-        </div>
-        <div class="code-container" id="code3">
-            <code>
-                <p>This is script 3.</p>
-            </code>
-        </div>
-        <div class="code-container" id="code4">
-            <code>
-                <p>This is script 4.</p>
-            </code>
-        </div>
-        <div class="code-container" id="code5">
-            <code>
-                <p>This is script 5.</p>
-            </code>
         </div>
     </div>
 
     <script>
-        function toggleCode(id) {
-            var codeContainers = document.querySelectorAll('.code-container');
-            codeContainers.forEach(function(container) {
-                container.style.display = 'none';
-            });
-            var codeContainer = document.getElementById('code' + id);
-            if (codeContainer.style.display === 'none') {
-                codeContainer.style.display = 'block';
-            } else {
-                codeContainer.style.display = 'none';
-            }
+        // Smooth scrolling function
+        function scrollToElement(elementId) {
+            var element = document.getElementById(elementId);
+            element.scrollIntoView({ behavior: "smooth" });
         }
+
+        // Add event listeners to each thumbnail to scroll to the corresponding section
+        var thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach(function(thumbnail) {
+            thumbnail.addEventListener('click', function(event) {
+                var targetId = event.target.getAttribute('href').substring(1); // Get the target id without the #
+                scrollToElement(targetId);
+            });
+        });
     </script>
 </body>
 </html>
