@@ -5,79 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batch Script Code</title>
     <style>
-       body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 20px;
-    position: relative; /* Add relative positioning to body */
-}
-.container {
-    max-width: 2200px; /* Increased max-width */
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center; /* Align content to center */
-    position: relative; /* Add relative positioning to container */
-    z-index: 2; /* Ensure the container is above the background rectangle */
-}
-h1 {
-    color: #333;
-}
-.code-container {
-    display: none;
-    background: #272822;
-    color: #f8f8f2;
-    padding: 20px;
-    border-radius: 5px;
-    overflow-x: auto;
-    text-align: left; /* Align code to left */
-}
-.content-container {
-    display: flex;
-    justify-content: space-between; /* Align items to the start and end of the container */
-    align-items: center;
-    position: relative;
-    z-index: 2; /* Ensure the content container is above the background rectangle */
-}
-.image-container {
-    flex: 3; /* Give image container 3/12 of the width */
-    margin: 10px;
-    align-self: flex-end; /* Align image container to the end */
-}
-.text-container {
-    flex: 9; /* Give text container 9/12 of the width */
-    margin: 10px;
-    position: relative;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0);
-    color:rgb(255, 255, 255);
-    z-index: 5;
-}
-
-.background-rectangle {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 30%;
-    height: 100%;
-    background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
-    z-index: 1; /* Ensure the background rectangle is behind other content */
-}
-.thumbnail {
-    width: 100%;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-}
-.thumbnail:hover {
-    transform: scale(1.05);
-}
-
-        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            position: relative; /* Add relative positioning to body */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center; /* Align content to center */
+            position: relative; /* Add relative positioning to container */
+            z-index: 2; /* Ensure the container is above the background rectangle */
+        }
+        h1 {
+            color: #333;
+        }
+        .code-container {
+            display: none;
+            background: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            text-align: left; /* Align code to left */
+        }
+        .content-container {
+            display: flex;
+            justify-content: space-between; /* Align items to the start and end of the container */
+            align-items: center;
+            position: relative;
+            z-index: 2; /* Ensure the content container is above the background rectangle */
+        }
+        .image-container {
+            flex: 1; /* Give image container 1/3 of the width */
+            margin: 10px;
+        }
+        .text-container {
+            flex: 2; /* Give text container 2/3 of the width */
+            margin: 10px;
+            position: relative; /* Make text container position relative */
+        }
+        .background-rectangle {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
+            z-index: 1; /* Ensure the background rectangle is behind other content */
+        }
+        .thumbnail {
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -87,47 +79,35 @@ h1 {
         <div class="content-container">
             <div class="image-container">
                 <!-- Place your images here -->
-                <a href="#code2"><img src="photos/batch-icon.jpg" alt="Batch Project" class="thumbnail"></a>
-                <a href="#code3"><img src="photos/programmer.jpg" alt="about " class="thumbnail"></a>
-                <a href="#code4"><img src="photos/social-media.jpg" alt="social media " class="thumbnail"></a>
-                <a href="#code5"><img src="photos/th-1157210002.jpg" alt="settings" class="thumbnail"></a>
+                <img src="photos/batch-icon.jpg" alt="Batch Project" class="thumbnail">
+                <img src="photos/programmer.jpg" alt="Script 3" class="thumbnail">
+                <img src="photos/social-media.jpg" alt="Script 4" class="thumbnail">
+                <img src="photos/th-1157210002.jpg" alt="Script 5" class="thumbnail">
             </div>
             <div class="text-container">
                 <!-- Add your text content here -->
                 <div class="code-container" id="code2">
-                   this is a test
+                    <code>
+                        <p>Code for the batch project goes here...</p>
+                    </code>
                 </div>
                 <div class="code-container" id="code3">
-                   test2
+                    <code>
+                        <p>This is script 3.</p>
+                    </code>
                 </div>
                 <div class="code-container" id="code4">
-                    test3
+                    <code>
+                        <p>This is script 4.</p>
+                    </code>
                 </div>
                 <div class="code-container" id="code5">
-                test4
+                    <code>
+                        <p>This is script 5.</p>
+                    </code>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        // Smooth scrolling function
-        function scrollToElement(elementId) {
-            var element = document.getElementById(elementId);
-            if (element) { // Check if element exists
-                element.scrollIntoView({ behavior: "smooth" });
-            }
-        }
-
-        // Add event listeners to each thumbnail to scroll to the corresponding section
-        var thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach(function(thumbnail) {
-            thumbnail.addEventListener('click', function(event) {
-                var targetId = event.target.getAttribute('href').substring(1); // Get the target id without the #
-                scrollToElement(targetId);
-            });
-        });
-    </script>
 </body>
 </html>
-
