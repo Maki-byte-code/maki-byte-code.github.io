@@ -12,6 +12,8 @@
             padding: 20px;
         }
         .container {
+            position:relative;
+            z-index:2;
             max-width: 2500px;
             margin: 0 auto;
             background: #fff;
@@ -72,12 +74,13 @@
             justify-content: flex-end; /* Align the container to the right */
         }
         .background-rectangle {
-            position: absolute;
+            position: fixed;
             top: 0;
             right: 0;
             width: 30%;
             height: 100%;
             background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
+            z-index:1
         }
         .frontground-rectangle {
             position:absolute;
