@@ -68,7 +68,7 @@
     top: 0;
     left: 0;
     width: 400%; /* Set the width to cover only the right 30% */
-    height: 5000%; /* Set the height to cover the entire container's height */
+    height: 15000%; /* Set the height to cover the entire container's height */
     z-index: 1; /* Place background behind text */
     border-radius: 0 5px 5px 0; /* Ensure border-radius matches text container */
 }
@@ -112,7 +112,148 @@
     </div>
     <div class="code-container" id="code2">
         <code>
-       <p>"countryguesser_FINAL.bat" </p>
+       <p><pre>@echo off
+        setlocal EnableDelayedExpansion
+        
+        :CalculateDistance
+        
+        set /p "country1=Enter the first country: "
+        set "file=coordinates.txt"
+        set "file1=encouragement.txt"
+        
+        set "total_lines=40"
+        set /a "random_line=!random! %% total_lines + 1"
+        
+        set "selected_line="
+        for /f "skip=%random_line% tokens=1" %%a in ('type "%file%"') do if not defined selected_line (
+            set "selected_line=%%a"
+            set  "country2=%%a"
+        )
+        
+        set "lat1="
+        set "lat2="
+        set "lon1="
+        set "lon2="
+        
+        for /f "tokens=1,2,3" %%a in (coordinates.txt) do (
+            if /i "%%a"=="%country1%" (
+                set "lat1=%%b"
+                set "lon1=%%c"
+            )
+            if /i "%%a"=="%country2%" (
+                set "lat2=%%b"
+                set "lon2=%%c"
+            )
+            if defined lat1 if defined lat2 if defined lon1 if defined lon2 goto :FoundCoordinates
+        )
+        
+        echo Coordinates not found for %country1% or %country2%
+        pause
+        exit /b
+        
+        :FoundCoordinates
+        
+        set /a "dLat=(lat2-lat1)*1000000"
+        set /a "dLon=(lon2-lon1)*1000000"
+        set /a "dLat2=(lat2-lat1)*111"
+        set /a "dLon2=(lon2-lon1)*76"
+        
+        if !dLat! LSS 0 (
+            set lat_direction=South
+        ) else (
+            set lat_direction=North
+        )
+        if !dLon! LSS 0 (
+            set lon_direction=West
+        ) else (
+            set lon_direction=East
+        )
+        
+        set /a "a=(dLat * dLat + dLon * dLon)"
+        set /a "distance=(a * 6371 + 500000) / 1000000" 2>nul
+        
+        if %distance% EQU 0 (
+            echo You won!  %country2% is the mystery country.
+        ) else (
+            
+            echo Latitude direction: %lat_direction% of %country1%   
+            echo Mystery country is %lon_direction% of %country1%  
+        )
+        
+        set /a "counter=8"
+        set "max_count=0"
+        
+        :GuessLoop
+        set /a "counter-=1"
+        if !counter! LSS %max_count% (
+            goto :Lose
+        )
+        
+        set /p "country3=Enter your next guess: "
+        
+        set "lat3="
+        set "lon3="
+        
+        for /f "tokens=1,2,3" %%a in (coordinates.txt) do (
+            if /i "%%a"=="%country3%" (
+                set "lat3=%%b"
+                set "lon3=%%c"
+            )
+        )
+        
+        if not defined lat3 if not defined lon3 (
+            echo Coordinates not found for %country3%
+            goto :GuessLoop
+        )
+        
+        set /a "dLat1=(lat3-lat2)*76"
+        set /a "dLon1=(lon3-lon2)*111"
+        if !dLat1! LSS 0 (
+            set lat_direction1=South
+        ) else (
+            set lat_direction1=North
+        )
+        if !dLon1! LSS 0 (
+            set lon_direction1=West
+        ) else (
+            set lon_direction1=East
+        )
+        
+        set /a "c=(dLat1*dLat1)"
+        set /a "d=(dLon1*dLon1)"
+        set /a "b=(c + d)"
+        
+        rem Square root calculation alternative
+        set "sqrt_b="
+        for /f "tokens=1,2 delims=." %%A in ('powershell "[Math]::Sqrt(%b%)"') do set "sqrt_b=%%A"
+        
+        
+        set /a "distance=(sqrt_b)"
+        
+        
+        
+        
+        if %distance% EQU 0 (
+            echo You won!  %country3% is the mystery country .
+            pause
+            exit /b
+        ) else (
+            echo you are %distance% km away.
+            if %counter% LSS 1 (
+                goto :Lose
+            ) else (
+           echo you can do it. %counter% more guesses left
+            )
+            goto :GuessLoop
+        
+        )
+        
+        :Lose
+        echo You lost the mystery country was %country2%
+        pause
+        echo Better luck next time
+    </pre>
+         </p>
         </code>
     </div>
     <div class="code-container" id="code3">
