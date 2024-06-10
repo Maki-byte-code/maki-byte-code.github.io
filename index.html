@@ -5,71 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batch Script Code</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-            position: relative; /* Add relative positioning to body */
-        }
-        .container {
-            max-width: 2500px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: center; /* Align content to center */
-            position: relative; /* Add relative positioning to container */
-            z-index: 2; /* Ensure the container is above the background rectangle */
-        }
-        h1 {
-            color: #333;
-        }
-        .code-container {
-            display: none;
-            background: #272822;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 5px;
-            overflow-x: auto;
-            text-align: left; /* Align code to left */
-        }
-        .content-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 2; /* Ensure the content container is above the background rectangle */
-        }
-        .image-container {
-            flex: 3; /* Give image 70% of the container */
-            margin: 10px;
-        }
-        .text-container {
-            flex: 7; /* Give text 30% of the container */
-            margin: 10px;
-            position: relative; /* Make text container position relative */
-        }
-        .background-rectangle {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 30%;
-            height: 100%;
-            background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
-            z-index: 1; /* Ensure the background rectangle is behind other content */
-        }
-        .thumbnail {
-            width: 100%;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: transform 0.3s;
-        }
-        .thumbnail:hover {
-            transform: scale(1.05);
-        }
+     body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    position: relative; /* Add relative positioning to body */
+}
+
+.container {
+    max-width: 2500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center; /* Align content to center */
+    position: relative; /* Add relative positioning to container */
+    z-index: 2; /* Ensure the container is above the background rectangle */
+    display: flex; /* Set container to flex */
+}
+
+h1 {
+    color: #333;
+}
+
+.code-container {
+    display: none;
+    background: #272822;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+    text-align: left; /* Align code to left */
+}
+
+.content-container {
+    flex: 1; /* Make content container take all available width */
+    display: flex; /* Set content container to flex */
+}
+
+.image-container {
+    width: 30%; /* Set width to 30% */
+    margin: 10px;
+    display: flex; /* Set image container to flex */
+    flex-direction: row; /* Arrange images vertically */
+    justify-content: center; /* Center images vertically */
+}
+
+.text-container {
+    width: 70%; /* Set width to 70% */
+    margin: 10px;
+    position: relative; /* Make text container position relative */
+}
+
+.background-rectangle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
+    z-index: 1; /* Ensure the background rectangle is behind other content */
+}
+
+.thumbnail {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+        
     </style>
 </head>
 <body>
