@@ -59,18 +59,32 @@
             margin: 10px;
             position: relative; /* Make text container position relative */
         }
-        .text-container::after {
-              content: "";
-    background: url('code falling.jpg') no-repeat;
-    background-size: 30% auto; /* Set the background size to 30% of the container's width and auto height */
-    opacity: 0.5; /* Low opacity for the background image */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 400%; /* Set the width to cover only the right 30% */
-    height: 15000%; /* Set the height to cover the entire container's height */
-    z-index: 1; /* Place background behind text */
-    border-radius: 0 5px 5px 0; /* Ensure border-radius matches text container */
+        .text-container::after 
+            <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Rectangle</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; /* Align the container to the right */
+        }
+        .background-rectangle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background-color: rgba(179, 0, 202, 0.5); /* Adjust color and opacity as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-rectangle"></div>
+</body>
+    
 }
         
         .image-container img {
@@ -89,10 +103,10 @@
 <body>
 
 <div class="container">
-    <h1>Batch Script Code</h1>
+    <h1>MAKI's site</h1>
     <div class="tab-container">
         <div class="tab" onclick="toggleCode(1)">about</div>
-        <div class="tab" onclick="toggleCode(2)">Script 2</div>
+        <div class="tab" onclick="toggleCode(2)">batch project</div>
         <div class="tab" onclick="toggleCode(3)">Script 3</div>
         <div class="tab" onclick="toggleCode(4)">Script 4</div>
         <div class="tab" onclick="toggleCode(5)">Script 5</div>
@@ -105,7 +119,7 @@
             <div class="text-container">
                 <code>
                     <h2>About</h2>
-                    <p>This is additional content to the right of the image. You can put any information here that you want to display alongside the image.</p>
+                    <p></p>
                 </code>
             </div>
         </div>
